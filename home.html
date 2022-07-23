@@ -1,0 +1,197 @@
+<html>
+
+<head>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static 'Proyecto1/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+     <!-- Fonts -->
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     
+
+    <!-- Styles -->
+    <link href="{% static 'Proyecto1/css/gestion.css' %}" rel="stylesheet">
+</head>
+
+<title> WoobTweet</title>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      
+        <span class="site-heading-lower"<p style="color:rgb(0,162,232);";>WoobTweet - Buscador de tweets</p></span>
+    </h1>
+
+
+ <!-- Navbar -->
+
+ <div class="container-fluid">
+      
+      <div class="row">
+          <div class="col-md-6" style="margin: 1rem auto 0 auto;">
+            <div class="card">
+                <div class="card-body">
+                    <form method="GET" action="{% url 'submitquery'%}">
+                        <div class="form-group">
+                            <input type="search" class="form-control" name="query" id="query">
+                        </div>
+                        <input type="submit" class="btn btn-primary">   
+                                              
+                    </form>
+          </div>
+
+      <div class="row">
+        <div class="col-md-6" style="margin:0 auto;">
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error</strong>          
+        </div>
+        {% endif %}
+        {% if result %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong> {{ans7}}</strong>
+        </div>
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" style="margin:0 auto;">
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error</strong>          
+        </div>
+        {% endif %}
+        {% if result %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Keyword: {{ans1}}</strong>          
+        </div>
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" style="margin:0 auto;">
+        {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Error</strong>          
+        </div>
+        {% endif %}
+        {% if result %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          Últimos 20 tweets: {{ans2}}          
+        </div>
+        {% endif %}
+        </div>
+      </div>
+      </div>
+
+      
+
+      <table>
+        <tr>
+          {% for col in df.columns %}
+            <td>
+              {{col}}
+            </td>
+          {% endfor %}
+        </tr>
+          {% for index, row in df.iterrows %}
+            <tr>
+              {% for cell in row %}
+                <td>
+                  {{cell}}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+      </table>
+
+
+
+
+
+
+  </div>
+  </div>
+  </div>
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static '/logo-header-woobsing-color.png' %}" alt="" style="width: 15%;">
+	<img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static '/png-transparent-computer-icons-logo-twitter-miscellaneous-blue-logo-thumbnail.png' %}" alt="" style="width: 4%;">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-upper"></span>
+            <span class="section-heading-lower"></span>
+          </h2>
+          <p class="mb-3">
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+   
+    <!-- Message -->
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper"></span>
+                <span class="section-heading-lower"></span>
+              </h2>
+              <p class="mb-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="https://woobsing.com/" class="link">Ir a Web Woobsing</a>  · 
+		</p>
+        <p class="m-0 mbt1">&copy; Woobsing 2022</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'demoDjango/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'demoDjango/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>
